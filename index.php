@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Boto | Photography HTML Template</title>
+	<title>DaVinci</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="Boto Photo Studio HTML Template">
 	<meta name="keywords" content="photo, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Stylesheets -->
 	<link rel="stylesheet" href="css/bootstrap.min.css"/>
 	<link rel="stylesheet" href="css/font-awesome.min.css"/>
 	<link rel="stylesheet" href="css/slicknav.min.css"/>
+	<link rel="stylesheet" href="css/fresco.css"/>
+	<link rel="stylesheet" href="css/slick.css"/>
+
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="css/style.css"/>
 
@@ -38,7 +40,7 @@
 					</div>
 				</div>
 				<div class="col-sm-4 col-md-6 order-1  order-md-2 text-center">
-					<a href="./index.html" class="site-logo" style="display: flex; flex-direction: row; justify-content: center;">	
+					<a href="./index.php" class="site-logo" style="display: flex; flex-direction: row; justify-content: center;">	
 						<!---<img src="/img/leonardo-da-vinci.png" style="height: 45px; width: 45px;" alt="">--->		
 						<h1 class="logo-title" style="font-size: 40px;">DaVinci</h1>
 					</a>
@@ -54,52 +56,92 @@
 			</div>
 			<nav class="main__menu">
 				<ul class="nav__menu">
-					<li><a href="./index.html" class="menu--active">Головна</a></li>
-					<li><a href="./about.html">Про нас</a></li>
-					<li><a href="./gallery.html">Галерея</a></li>
-					<li><a href="./blog.html">Пости</a>
+					<li><a href="./index.php" class="menu--active">Головна</a></li>
+					<li><a href="./about.php">Про нас</a></li>
+					<li><a href="./gallery.php">Галерея</a></li>
+					<li><a href="./blog.php">Пости</a>
 						<ul class="sub__menu">
-							<li><a href="./blog-single.html">Одиночний пост</a></li>
+							<li><a href="./blog-single.php">Одиночний пост</a></li>
 						</ul>
 					</li>
-					<li><a href="./contact.html">Контакти</a></li>
+					<li><a href="./contact.php">Контакти</a></li>
 				</ul>
 			</nav>
 		</div>
 	</header>
 	<!-- Header Section end -->
 
-	<!-- Contact Page -->
-	<section class="contact__page">
-		<div class="contact__warp">
-			<div class="row">
-				<div class="col-md-6">
-					<h2>Contact Me</h2>
-					<div class="contact__social">
-						<a href="#"><i class="fa fa-facebook"></i></a>
-						<a href="#"><i class="fa fa-twitter"></i></a>
-						<a href="#"><i class="fa fa-linkedin"></i></a>
-						<a href="#"><i class="fa fa-instagram"></i></a>
-					</div>
-				</div>
-				<div class="col-md-6">
-					<div class="contact__text">
-						<p>Phone: 001-1234-666666</p>
-						<p>Email: hi.colorlib@gmail.com</p>
-						<p>Address: 562 Domenic Corner Suite 613</p>
-					</div>
-				</div>
+	<!-- Hero Section -->
+	<section class="hero__section">
+		<div class="hero-slider">
+			<div class="slide-item">
+				<a class="fresco" href="img/hero-slider/1.jpg" data-fresco-group="projects">
+					<img src="img/hero-slider/1.jpg" alt="">
+				</a>
 			</div>
-			<form class="contact__form">
-				<input type="text" placeholder="Name">
-				<input type="text" placeholder="Email">
-				<input type="text" placeholder="Phone">
-				<textarea placeholder="Message"></textarea>
-				<button class="site-btn">Send Message</button>
-			</form>
+			<div class="slide-item">
+				<a class="fresco" href="img/hero-slider/2.jpg" data-fresco-group="projects">
+					<img src="img/hero-slider/2.jpg" alt="">
+					</a>
+			</div>
+			<div class="slide-item">
+				<a class="fresco" href="img/hero-slider/3.jpg" data-fresco-group="projects">
+					<img src="img/hero-slider/3.jpg" alt="">
+				</a>	
+			</div>
+			<div class="slide-item">
+				<a class="fresco" href="img/hero-slider/4.jpg" data-fresco-group="projects">
+					<img src="img/hero-slider/4.jpg" alt="">
+				</a>	
+			</div>
+			<div class="slide-item">
+				<a class="fresco" href="img/hero-slider/5.jpg" data-fresco-group="projects">
+					<img src="img/hero-slider/5.jpg" alt="">
+				</a>	
+			</div>
+			<div class="slide-item">
+				<a class="fresco" href="img/hero-slider/6.jpg" data-fresco-group="projects">
+					<img src="img/hero-slider/6.jpg" alt="">
+				</a>	
+			</div>
+			<div class="slide-item">
+				<a class="fresco" href="img/hero-slider/7.jpg" data-fresco-group="projects">
+					<img src="img/hero-slider/7.jpg" alt="">
+				</a>	
+			</div>
+		</div>
+		<div class="hero-text-slider">
+			<div class="text-item">
+				<h2>Nature</h2>
+				<p>Photography</p>
+			</div>
+			<div class="text-item">
+				<h2>Red Heartbeat</h2>
+				<p>Photography</p>
+			</div>
+			<div class="text-item">
+				<h2>Blue Dreem</h2>
+				<p>Photography</p>
+			</div>
+			<div class="text-item">
+				<h2>Christian Church</h2>
+				<p>Photography</p>
+			</div>
+			<div class="text-item">
+				<h2>Red Darkness</h2>
+				<p>Photography</p>
+			</div>
+			<div class="text-item">
+				<h2>Beauty with Brain</h2>
+				<p>Photography</p>
+			</div>
+			<div class="text-item">
+				<h2>Remarkable</h2>
+				<p>Photography</p>
+			</div>
 		</div>
 	</section>
-	<!-- Contact Page end -->
+	<!-- Hero Section end -->
 
 	<!-- Footer Section -->
 	<footer class="footer__section">
@@ -128,6 +170,7 @@
 	<script src="js/vendor/jquery-3.2.1.min.js"></script>
 	<script src="js/jquery.slicknav.min.js"></script>
 	<script src="js/slick.min.js"></script>
+	<script src="js/fresco.min.js"></script>
 	<script src="js/main.js"></script>
 
 	</body>

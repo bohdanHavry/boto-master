@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<div class="col-sm-4 col-md-6 order-1  order-md-2 text-center">
-					<a href="./index.html" class="site-logo" style="display: flex; flex-direction: row; justify-content: center;">	
+					<a href="./index.php" class="site-logo" style="display: flex; flex-direction: row; justify-content: center;">	
 						<!---<img src="/img/leonardo-da-vinci.png" style="height: 45px; width: 45px;" alt="">--->		
 						<h1 class="logo-title" style="font-size: 40px;">DaVinci</h1>
 					</a>
@@ -55,15 +55,15 @@
 			</div>
 			<nav class="main__menu">
 				<ul class="nav__menu">
-					<li><a href="./index.html" class="menu--active">Головна</a></li>
-					<li><a href="./about.html">Про нас</a></li>
-					<li><a href="./gallery.html">Галерея</a></li>
-					<li><a href="./blog.html">Пости</a>
+					<li><a href="./index.php" class="menu--active">Головна</a></li>
+					<li><a href="./about.php">Про нас</a></li>
+					<li><a href="./gallery.php">Галерея</a></li>
+					<li><a href="./blog.php">Пости</a>
 						<ul class="sub__menu">
-							<li><a href="./blog-single.html">Одиночний пост</a></li>
+							<li><a href="./blog-single.php">Одиночний пост</a></li>
 						</ul>
 					</li>
-					<li><a href="./contact.html">Контакти</a></li>
+					<li><a href="./contact.php">Контакти</a></li>
 				</ul>
 			</nav>
 		</div>

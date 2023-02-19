@@ -50,7 +50,7 @@
 						<a href="#" class="search-switch"><i class="fa fa-search"></i></a>
 						<a href="#" class="nav-switch"><i class="fa fa-bars"></i></a>
 						<a href="#"><i class="fa fa-heart"></i></a>
-						<a href="#"><i class="fa fa-user"></i></a>						
+						<a href="login.php"><i class="fa fa-user"></i></a>						
 					</div>
 				</div>
 			</div>

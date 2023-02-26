@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Boto | Photography HTML Template</title>
+	<title>DaVinci</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="Boto Photo Studio HTML Template">
+	<meta name="description" content="Photo Studio">
 	<meta name="keywords" content="photo, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Stylesheets -->
@@ -48,7 +48,7 @@
 						<a href="#" class="search-switch"><i class="fa fa-search"></i></a>
 						<a href="#" class="nav-switch"><i class="fa fa-bars"></i></a>
 						<a href="#"><i class="fa fa-heart"></i></a>
-						<a href="#"><i class="fa fa-user"></i></a>						
+						<a href="login.php"><i class="fa fa-user"></i></a>							
 					</div>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 		<div class="contact__warp">
 			<div class="row">
 				<div class="col-md-6">
-					<h2>Contact Me</h2>
+					<h2>Наші контакти</h2>
 					<div class="contact__social">
 						<a href="#"><i class="fa fa-facebook"></i></a>
 						<a href="#"><i class="fa fa-twitter"></i></a>
@@ -84,18 +84,18 @@
 				</div>
 				<div class="col-md-6">
 					<div class="contact__text">
-						<p>Phone: 001-1234-666666</p>
-						<p>Email: hi.colorlib@gmail.com</p>
-						<p>Address: 562 Domenic Corner Suite 613</p>
+						<p>Телефон: 0000-0000-0000</p>
+						<p>Поштова скринька: davinci@gmail.com</p>
+						<p>Адреса: м. Київ, вул. Героїв 13</p>
 					</div>
 				</div>
 			</div>
 			<form class="contact__form">
-				<input type="text" placeholder="Name">
-				<input type="text" placeholder="Email">
-				<input type="text" placeholder="Phone">
-				<textarea placeholder="Message"></textarea>
-				<button class="site-btn">Send Message</button>
+				<input type="text" placeholder="Ім'я">
+				<input type="text" placeholder="Поштова скринька">
+				<input type="text" placeholder="Телефон">
+				<textarea placeholder="Напишіть повідомлення"></textarea>
+				<button class="site-btn">Відправити повідомлення</button>
 			</form>
 		</div>
 	</section>

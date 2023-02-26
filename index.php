@@ -112,32 +112,32 @@
 		</div>
 		<div class="hero-text-slider">
 			<div class="text-item">
-				<h2>Nature</h2>
-				<p>Photography</p>
+				<h2>Природа</h2>
+				<p>Фотографія</p>
 			</div>
 			<div class="text-item">
-				<h2>Red Heartbeat</h2>
-				<p>Photography</p>
+				<h2>Серцебиття</h2>
+				<p>Фотографія</p>
 			</div>
 			<div class="text-item">
-				<h2>Blue Dreem</h2>
-				<p>Photography</p>
+				<h2>Синя мрія</h2>
+				<p>Фотографія</p>
 			</div>
 			<div class="text-item">
-				<h2>Christian Church</h2>
-				<p>Photography</p>
+				<h2>Церква Христа</h2>
+				<p>Фотографія</p>
 			</div>
 			<div class="text-item">
-				<h2>Red Darkness</h2>
-				<p>Photography</p>
+				<h2>Червона темрява</h2>
+				<p>Фотографія</p>
 			</div>
 			<div class="text-item">
-				<h2>Beauty with Brain</h2>
-				<p>Photography</p>
+				<h2>Фотопортрет</h2>
+				<p>Фотографія</p>
 			</div>
 			<div class="text-item">
-				<h2>Remarkable</h2>
-				<p>Photography</p>
+				<h2>Віртуальність</h2>
+				<p>Фотографія</p>
 			</div>
 		</div>
 	</section>

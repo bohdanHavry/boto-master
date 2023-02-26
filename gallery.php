@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Boto | Photography HTML Template</title>
+	<title>DaVinci</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="Boto Photo Studio HTML Template">
+	<meta name="description" content="Photo Studio">
 	<meta name="keywords" content="photo, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Stylesheets -->
@@ -50,7 +50,7 @@
 						<a href="#" class="search-switch"><i class="fa fa-search"></i></a>
 						<a href="#" class="nav-switch"><i class="fa fa-bars"></i></a>
 						<a href="#"><i class="fa fa-heart"></i></a>
-						<a href="#"><i class="fa fa-user"></i></a>						
+						<a href="login.php"><i class="fa fa-user"></i></a>						
 					</div>
 				</div>
 			</div>

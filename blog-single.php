@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
-	<title>Boto | Photography HTML Template</title>
+	<title>DaVinci</title>
 	<meta charset="UTF-8">
-	<meta name="description" content="Boto Photo Studio HTML Template">
+	<meta name="description" content=" Photo Studio">
 	<meta name="keywords" content="photo, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Stylesheets -->
@@ -50,7 +50,7 @@
 						<a href="#" class="search-switch"><i class="fa fa-search"></i></a>
 						<a href="#" class="nav-switch"><i class="fa fa-bars"></i></a>
 						<a href="#"><i class="fa fa-heart"></i></a>
-						<a href="#"><i class="fa fa-user"></i></a>						
+						<a href="login.php"><i class="fa fa-user"></i></a>							
 					</div>
 				</div>
 			</div>
@@ -87,7 +87,7 @@
 		<article class="blog__article">
 			<div class="blog__container">
 				<div class="blog__header">
-					<div class="blog__cata">Photography</div>
+					<div class="blog__cata">Фотографія</div>
 					<h2 class="blog__single__title">9 Reasons to Buy a 50mm Prime Lens & Skip the Kit Lens</h2>
 					<div class="blog__metas">
 						<div class="blog__meta">By Colorlib </div>
@@ -163,7 +163,7 @@
 						<div class="blog__item set-bg" data-setbg="img/blog/4.jpg">
 							<div class="blog__content">
 								<div class="blog__date">DEC 18, 2019</div>
-								<h4><a href="./blog-single.html">Assorted Textures FREE Stock Photos</a></h4>
+								<h4><a href="./blog-single.php">Assorted Textures FREE Stock Photos</a></h4>
 							</div>
 						</div>
 					</div>
@@ -171,7 +171,7 @@
 						<div class="blog__item set-bg" data-setbg="img/blog/2.jpg">
 							<div class="blog__content">
 								<div class="blog__date">DEC 18, 2019</div>
-								<h4><a href="./blog-single.html">Assorted Textures FREE Stock Photos</a></h4>
+								<h4><a href="./blog-single.php">Assorted Textures FREE Stock Photos</a></h4>
 							</div>
 						</div>
 					</div>
@@ -179,7 +179,7 @@
 						<div class="blog__item set-bg" data-setbg="img/blog/3.jpg">
 							<div class="blog__content">
 								<div class="blog__date">DEC 18, 2019</div>
-								<h4><a href="./blog-single.html">Assorted Textures FREE Stock Photos</a></h4>
+								<h4><a href="./blog-single.php">Assorted Textures FREE Stock Photos</a></h4>
 							</div>
 						</div>
 					</div>

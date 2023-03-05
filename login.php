@@ -1,3 +1,42 @@
+
+<?php
+	session_start();
+	include "include/include.php"; //Підключення до бази даних
+
+
+    if (isset($_POST['submit_input']))
+	{
+		$login=$_POST["login"];
+		$password=$_POST["password"];
+
+
+       $id_query = mysqli_query($linc, "SELECT ID_User FROM Users WHERE Login='$login' AND Password='$password'");
+       if (mysqli_num_rows($id_query) > 0) {
+        $id_row = mysqli_fetch_assoc($id_query);
+        $user_id = $id_row['ID_User'];
+         }
+        
+
+		$result = mysqli_query($linc, "SELECT * FROM Users WHERE Login='$login' AND Password='$password'");
+	     if (mysqli_num_rows($result)>0)
+	     {$row=mysqli_fetch_array($result);
+			if ($row["Access_level"]==1) 
+			{$_SESSION['auth_user']	= 'user';
+                $_SESSION['ID_User'] = $user_id;
+	         header("Location: authorized_index.php?ID_User=$user_id");
+			}
+			if ($row["Access_level"]==10) 
+			{$_SESSION['auth_user']	= 'admin';
+	         header("Location: authorized_index.php?ID_User=$user_id");
+			}
+            else{
+                echo 'Такого користувача не існує';
+            }
+		 }
+	}
+
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,21 +45,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="css/login.css"/>
-    <title>DaVinci Login & Registration</title>
+    <title>Логін та Реєстрація</title>
 </head>
 <body>
     <div class="container">
         <div class="forms">
             <div class="form login">
                 <span class="title">Вхід</span>
-
-                <form action="#">
+                <form method="POST" action="">
                     <div class="input-field">
-                        <input type="text" placeholder="Введіть поштову скриньку" required>
+                        <input name="login" type="text" placeholder="Введіть логін" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Введіть пароль" required>
+                        <input name="password" type="password" class="password" placeholder="Введіть пароль" required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
@@ -32,10 +70,10 @@
                         </div>
                         
                         <a href="#" class="text">Забули пароль?</a>
-                    </div>
+                            </div>
 
                     <div class="input-field button">
-                        <input type="button" value="Увійти">
+                        <input type="submit" name="submit_input" value="Увійти">
                     </div>
                 </form>
 

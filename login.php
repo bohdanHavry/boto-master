@@ -88,14 +88,10 @@
             <div class="form signup">
                 <span class="title">Реєстрація</span>
 
-                <form action="#">
+                <form action="" method="POST">
                     <div class="input-field">
-                        <input type="text" placeholder="Введіть ім'я" required>
+                        <input type="text" placeholder="Введіть логін" required>
                         <i class="uil uil-user"></i>
-                    </div>
-                    <div class="input-field">
-                        <input type="text" placeholder="Введіть поштову скриньку" required>
-                        <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
                         <input type="password" class="password" placeholder="Введіть пароль" required>
@@ -106,7 +102,26 @@
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
-
+                    <div class="input-field">
+                        <input type="email" placeholder="Введіть поштову скриньку" required>
+                        <i class="uil uil-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" placeholder="Введіть ім'я" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" placeholder="Введіть прізвище" required>
+                        <i class="uil uil-user"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="tel" pattern="[+]380[0-9]{9}" placeholder="Введіть телефон" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" placeholder="Особиста інформація" required>
+                        <i class="uil uil-envelope icon"></i>
+                    </div>
                     <div class="input-field button">
                         <input type="button" value="Зареєструватися">
                     </div>

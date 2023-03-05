@@ -18,12 +18,14 @@ body{
 .container{
     position: relative;
     max-width: 430px;
+    height: 900px;
     width: 100%;
     background: #fff;
     border-radius: 10px;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
     overflow: hidden;
     margin: 0 20px;
+    padding-top: 150px;
 }
 
 .container .forms{
@@ -55,6 +57,7 @@ body{
 .container.active .signup{
     opacity: 1;
     transition: opacity 0.2s ease;
+
 }
 
 .container.active .forms{
@@ -176,4 +179,17 @@ body{
 .form .login-signup{
     margin-top: 30px;
     text-align: center;
+}
+
+.container.active{
+    position: relative;
+    max-width: 430px;
+    height: 900px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+    overflow: hidden;
+    margin: 0 20px;
+    padding-top: 150px;
 }

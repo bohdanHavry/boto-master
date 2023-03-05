@@ -7,13 +7,14 @@
     if (isset($_POST['submit_input']))
 	{
 		$login=$_POST["login"];
-		$password=$_POST["password"];
-
+        //////// Міняти бо 2 користувача з незашифрованими паролями 
+		//$password=$_POST["password"];
+        $password = md5($_POST["password"]);
 
        $id_query = mysqli_query($linc, "SELECT ID_User FROM Users WHERE Login='$login' AND Password='$password'");
        if (mysqli_num_rows($id_query) > 0) {
         $id_row = mysqli_fetch_assoc($id_query);
-        $user_id = $id_row['ID_User'];
+        $ID_User = $id_row['ID_User'];
          }
         
 
@@ -22,20 +23,22 @@
 	     {$row=mysqli_fetch_array($result);
 			if ($row["Access_level"]==1) 
 			{$_SESSION['auth_user']	= 'user';
-                $_SESSION['ID_User'] = $user_id;
-	         header("Location: authorized_index.php?ID_User=$user_id");
+                $_SESSION['ID_User'] = $ID_User;
+	         header("Location: index.php?ID_User=$ID_User");
+             //header("Location: index.php?ID_User=$ID_User");
 			}
 			if ($row["Access_level"]==10) 
 			{$_SESSION['auth_user']	= 'admin';
-	         header("Location: authorized_index.php?ID_User=$user_id");
+                $_SESSION['ID_User'] = $ID_User;
+	         header("Location: index.php?ID_User=$ID_User");
 			}
-            else{
-                echo 'Такого користувача не існує';
+            else{ echo'
+                <script>
+					alert("Такого користувача не існує.");
+				</script>';
             }
 		 }
 	}
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +47,7 @@
 	<meta name="keywords" content="photo, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="css/login.css"/>
+	<link rel="stylesheet" href="css/loginform.css"/>
     <title>Логін та Реєстрація</title>
 </head>
 <body>
@@ -90,40 +93,40 @@
 
                 <form action="" method="POST">
                     <div class="input-field">
-                        <input type="text" placeholder="Введіть логін" required>
+                        <input type="text" placeholder="Введіть логін" name="Login" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Введіть пароль" required>
+                        <input type="password" class="password" placeholder="Введіть пароль" name="Password"  required>
                         <i class="uil uil-lock icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="password" class="password" placeholder="Підтвердіть пароль" required>
+                        <input type="password" class="password" placeholder="Підтвердіть пароль" name="Confirm_password"  required>
                         <i class="uil uil-lock icon"></i>
                         <i class="uil uil-eye-slash showHidePw"></i>
                     </div>
                     <div class="input-field">
-                        <input type="email" placeholder="Введіть поштову скриньку" required>
+                        <input type="text" placeholder="Nickname" name="Nickname" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="Введіть ім'я" required>
+                        <input type="text" placeholder="Введіть ім'я" name="Name" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="Введіть прізвище" required>
+                        <input type="text" placeholder="Введіть прізвище" name="Surname" required>
                         <i class="uil uil-user"></i>
                     </div>
                     <div class="input-field">
-                        <input type="tel" pattern="[+]380[0-9]{9}" placeholder="Введіть телефон" required>
+                        <input type="tel" pattern="[+]380[0-9]{9}" placeholder="Введіть телефон" title="Формат телефона +380ХХХХХХХХХ" name="Phone" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field">
-                        <input type="text" placeholder="Особиста інформація" required>
+                        <input type="text" placeholder="Особиста інформація" name="Personal_info" required>
                         <i class="uil uil-envelope icon"></i>
                     </div>
                     <div class="input-field button">
-                        <input type="button" value="Зареєструватися">
+                        <a href="#"><input type="submit" name="submit_reg" value="Зареєструватися"></a>
                     </div>
                 </form>
 
@@ -139,3 +142,59 @@
 </body>
 </html>
 
+<?php
+	$error="";
+	if (isset($_POST['submit_reg']))
+    {
+		if ($_POST["Login"]=="" || $_POST["Password"]=="" || $_POST["Confirm_password"]=="")
+			{echo '
+				<script>
+				alert("Не введено логін або пароль.");
+				</script>';
+				$error="1";
+			}
+		
+
+		if ($_POST["Password"]!=$_POST["Confirm_password"])
+		    {echo '
+			<script>
+			alert("Не співпадають введені значення паролю.");
+			</script>';
+			$error="2";
+		    }
+		
+		$result=mysqli_query($linc, "SELECT * FROM Users");
+           $row = mysqli_fetch_array($result);
+			do{
+			  if ($_POST["Login"]==$row['Login'])
+			  {echo '
+				<script>
+					alert("Такий логін вже існує.");
+				</script>';
+				$error="3";				
+			  }
+			  
+		      }	
+			while ($row = mysqli_fetch_array($result));  	
+		
+		if ($error=="")
+		{
+        $password1 = md5($_POST["Password"]);
+         $password2 = md5($_POST["Confirm_password"]);
+		  $Access_level="1";;
+			mysqli_query($linc, "INSERT INTO Users SET
+					Login='".$_POST["Login"]."',
+					Password='".$password1."',
+                    Confirm_password='".$password1."',
+                    Nickname='".$_POST["Nickname"]."',
+                    Name='".$_POST["Name"]."',
+                    Surname='".$_POST["Surname"]."',
+                    Phone='".$_POST["Phone"]."',
+                    Personal_info='".$_POST["Personal_info"]."',
+					Access_level='".$Access_level."'
+					");
+                  //  header("Location: login.php");
+		};
+	};		
+
+?>           	

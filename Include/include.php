@@ -1,6 +1,6 @@
 <?php
 $servername = "localhost"; 
-$database = "daVinci"; 
+$database = "gallery_DaVinci"; 
 $username = "root"; 
 $password = ""; 
 // Створюємо підключення

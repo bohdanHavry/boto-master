@@ -10,24 +10,24 @@
 		$password=$_POST["password"];
 
 
-       $id_query = mysqli_query($linc, "SELECT ID_User FROM Users WHERE Login='$login' AND Password='$password'");
+       $id_query = mysqli_query($linc, "SELECT user_id FROM Users WHERE user_login='$login' AND user_password='$password'");
        if (mysqli_num_rows($id_query) > 0) {
         $id_row = mysqli_fetch_assoc($id_query);
-        $user_id = $id_row['ID_User'];
+        $user_id = $id_row['user_id'];
          }
         
 
-		$result = mysqli_query($linc, "SELECT * FROM Users WHERE Login='$login' AND Password='$password'");
+		$result = mysqli_query($linc, "SELECT * FROM Users WHERE user_login='$login' AND user_password='$password'");
 	     if (mysqli_num_rows($result)>0)
 	     {$row=mysqli_fetch_array($result);
-			if ($row["Access_level"]==1) 
-			{$_SESSION['auth_user']	= 'user';
-                $_SESSION['ID_User'] = $user_id;
-	         header("Location: authorized_index.php?ID_User=$user_id");
-			}
-			if ($row["Access_level"]==10) 
+			if ($row["role_id"]==1) 
 			{$_SESSION['auth_user']	= 'admin';
-	         header("Location: authorized_index.php?ID_User=$user_id");
+                $_SESSION['user_id'] = $user_id;
+	         header("Location: authorized_index.php?user_id=$user_id");
+			}
+			if ($row["role_id"]==2) 
+			{$_SESSION['auth_user']	= 'user';
+	         header("Location: authorized_index.php?user_id=$user_id");
 			}
             else{
                 echo 'Такого користувача не існує';

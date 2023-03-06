@@ -1,6 +1,6 @@
 <?php
 session_start();
-    $User_ID = $_GET['ID_User'];
+    $User_ID = $_GET['user_id'];
     
     
  ?>
@@ -76,6 +76,7 @@ session_start();
 						</ul>
 					</li>
 					<li><a href="./contact.php">Контакти</a></li>
+					<li><a href="admin/admin_panel.php">Адміністрування</a></li>
 				</ul>
 			</nav>
 		</div>

@@ -1,3 +1,27 @@
+<?php
+	session_start();
+	include "include/include.php"; //Підключення до бази даних
+    $ID_User = $_GET['ID_User'];
+    //echo "'.$ID_User.'";
+
+   /* // перевіряємо, чи залогінений користувач
+    if (!isset($_SESSION['ID_User'])) {
+        // перенаправляємо на головну сторінку
+        header('Location: index.php');
+        exit();
+    }*/
+
+    // обробляємо натискання на кнопку "Вийти"
+    if (isset($_POST['logout'])) {
+        // видаляємо всі дані сеансу
+        session_unset();
+        session_destroy();
+        // перенаправляємо на головну сторінку
+        header('Location: index.php');
+        exit();
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +33,7 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/font-awesome.min.css"/>
     <link rel="stylesheet" href="css/profile.css"/>
+   
 <!------ Include the above in your HEAD tag ---------->
     <title>DaVinci</title>
 </head>
@@ -33,18 +58,41 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <div class="profile-head">
+
+                    <?php
+                    $sql = "SELECT * FROM Users WHERE ID_User='$ID_User'";
+                    $result = mysqli_query($linc, $sql);
+
+                    // перевірка наявності даних у таблиці
+                    if (mysqli_num_rows($result) > 0) {
+                        while($row = mysqli_fetch_assoc($result)) {
+                            // виведення даних на сторінку
+                            echo ' <div class="col-md-6">
+                                    <div class="profile-head">
                                     <h5>
-                                        Ім'я Прізвище
+                                        '. $row["Nickname"] .'
                                     </h5>
                                     <h6>
-                                        Опис
+                                        '. $row["Personal_info"] .'
                                     </h6>
                         </div>
-                    </div>
+                    </div>';
+                    }
+                    } else {                   
+                    // якщо таблиця порожня, виводимо повідомлення
+                    echo "Увійдіть в акаунт";
+                    }
+
+                    // закриття з'єднання з базою даних
+                    ?>
+
                     <div class="col-md-2" style="text-align: center;">
-                        <a class="profile-edit-btn" href="#">Змінити інформацію</a>
+                    <?php 
+                            if($ID_User > 0)
+                            {
+                              echo'  <a class="profile-edit-btn" href="changeinfo.php?ID_User='.$ID_User.'">Змінити інформацію</a>';
+                            } 
+                        ?>	
                     </div>
                 </div>
                 <div class="row">
@@ -59,7 +107,7 @@
                     <div class="col-md-8">
                         <div class="tab-content profile-tab" id="myTabContent">
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                        <div class="row">
+                                       <!----- <div class="row">
                                             <div class="col-md-6">
                                                 <label>Назва користувача</label>
                                             </div>
@@ -98,7 +146,60 @@
                                             <div class="col-md-6">
                                                 <p>0000-0000-0000</p>
                                             </div>
-                                        </div>                                      
+                                        </div>      ---->          
+                                        <?php
+                                        // запит для вибору даних з таблиці
+                                        $sql = "SELECT * FROM Users WHERE ID_User='$ID_User'";
+                                        $result = mysqli_query($linc, $sql);
+                                        
+                                        // перевірка наявності даних у таблиці
+                                        if (mysqli_num_rows($result) > 0) {
+                                            while($row = mysqli_fetch_assoc($result)) {
+                                                // виведення даних на сторінку
+                                                echo '<div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Ім\'я</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>' . $row["Name"] . '</p>
+                                                        </div>
+                                                      </div>
+                                                      <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Прізвище</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>' . $row["Surname"] . '</p>
+                                                        </div>
+                                                      </div>
+                                                      <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Поштова скринька змінити бо тут нікнейм</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>' . $row["Nickname"] . '</p>
+                                                        </div>
+                                                      </div>
+                                                      <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Телефон</label>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <p>' . $row["Phone"] . '</p>
+                                                        </div>
+                                                      </div>';
+                                            }
+                                        } else {                   
+                                        // якщо таблиця порожня, виводимо повідомлення
+                                        echo "Увійдіть в акаунт";
+                                        }
+
+                                        // закриття з'єднання з базою даних
+                                        mysqli_close($linc);
+                                        ?>   
+                                    <form method="post">
+                                    <a href="login.php" class="btn btn-succes" name="logout">Вийти з акаунту</a>
+                                    </form>                       
                             </div>
                         </div>
                     </div>

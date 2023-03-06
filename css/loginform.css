@@ -26,6 +26,11 @@ body{
     margin: 0 20px;
 }
 
+.container.active{
+    height: 900px;
+    padding-top: 150px;
+}
+
 .container .forms{
     display: flex;
     align-items: center;

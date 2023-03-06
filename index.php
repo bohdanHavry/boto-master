@@ -1,3 +1,7 @@
+<?php
+session_start();
+    $ID_User = $_GET['ID_User'];
+ ?>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
@@ -50,7 +54,13 @@
 						<a href="#" class="search-switch"><i class="fa fa-search"></i></a>
 						<a href="#" class="nav-switch"><i class="fa fa-bars"></i></a>
 						<a href="#"><i class="fa fa-heart"></i></a>
-						<a href="login.php"><i class="fa fa-user"></i></a>						
+						<?php 
+                            if($ID_User > 0)
+                            {
+								echo '<a href="profile.php?ID_User=' . $ID_User . '"><i class="fa fa-user"></i></a>';
+
+                            } else echo '<a href="login.php"><i class="fa fa-user"></i></a>';
+                        ?>							
 					</div>
 				</div>
 			</div>

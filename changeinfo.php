@@ -13,7 +13,7 @@
 	<meta name="keywords" content="photo, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="css/loginform.css"/>
+	<link rel="stylesheet" href="css/loginforms.css"/>
     <title>Змінення інформації</title>
 </head>
 <body>

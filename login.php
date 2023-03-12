@@ -7,34 +7,28 @@
     if (isset($_POST['submit_input']))
 	{
 		$login=$_POST["login"];
-        //////// Міняти бо 2 користувача з незашифрованими паролями 
-		//$password=$_POST["password"];
         $password = md5($_POST["password"]);
 
-       $id_query = mysqli_query($linc, "SELECT user_id FROM Users WHERE user_login='$login' AND user_password='$password'");
+       $id_query = mysqli_query($linc, "SELECT ID_User FROM Users WHERE Login='$login' AND Password='$password'");
        if (mysqli_num_rows($id_query) > 0) {
         $id_row = mysqli_fetch_assoc($id_query);
-=======
         $ID_User = $id_row['ID_User'];
->>>>>>> a2d0f4d609ad4c14bb7b171d9ec8b7b23f72033c
          }
         
 
-		$result = mysqli_query($linc, "SELECT * FROM Users WHERE user_login='$login' AND user_password='$password'");
+		$result = mysqli_query($linc, "SELECT * FROM Users  WHERE Login='$login' AND Password='$password'");
 	     if (mysqli_num_rows($result)>0)
 	     {$row=mysqli_fetch_array($result);
-=======
-			if ($row["Access_level"]==1) 
-			{$_SESSION['auth_user']	= 'user';
+			if ($row["role_id"]==1) 
+			{$_SESSION['auth_user']	= 'admin';
                 $_SESSION['ID_User'] = $ID_User;
 	         header("Location: index.php?ID_User=$ID_User");
              //header("Location: index.php?ID_User=$ID_User");
 			}
-			if ($row["Access_level"]==10) 
-			{$_SESSION['auth_user']	= 'admin';
+			if ($row["role_id"]==2) 
+			{$_SESSION['auth_user']	= 'user';
                 $_SESSION['ID_User'] = $ID_User;
 	         header("Location: index.php?ID_User=$ID_User");
->>>>>>> a2d0f4d609ad4c14bb7b171d9ec8b7b23f72033c
 			}
             else{ echo'
                 <script>
@@ -51,7 +45,7 @@
 	<meta name="keywords" content="photo, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="css/loginform.css"/>
+	<link rel="stylesheet" href="css/loginforms.css"/>
     <title>Логін та Реєстрація</title>
 </head>
 <body>
@@ -185,7 +179,7 @@
 		{
         $password1 = md5($_POST["Password"]);
          $password2 = md5($_POST["Confirm_password"]);
-		  $Access_level="1";;
+		  $role_id="1";;
 			mysqli_query($linc, "INSERT INTO Users SET
 					Login='".$_POST["Login"]."',
 					Password='".$password1."',
@@ -195,7 +189,7 @@
                     Surname='".$_POST["Surname"]."',
                     Phone='".$_POST["Phone"]."',
                     Personal_info='".$_POST["Personal_info"]."',
-					Access_level='".$Access_level."'
+					role_id='".$role_id."'
 					");
                   //  header("Location: login.php");
 		};

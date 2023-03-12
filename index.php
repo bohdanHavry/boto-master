@@ -1,6 +1,12 @@
 <?php
 session_start();
+if (isset($_GET['ID_User'])) {
     $ID_User = $_GET['ID_User'];
+    // тут можна виконати код, який використовує змінну $ID_User
+} else {
+    // тут можна виконати інші дії, якщо параметр ID_User не був переданий
+}
+
  ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -55,7 +61,7 @@ session_start();
 						<a href="#" class="nav-switch"><i class="fa fa-bars"></i></a>
 						<a href="#"><i class="fa fa-heart"></i></a>
 						<?php 
-                            if($ID_User > 0)
+                            if(isset($_GET['ID_User'])>0)
                             {
 								echo '<a href="profile.php?ID_User=' . $ID_User . '"><i class="fa fa-user"></i></a>';
 
@@ -75,6 +81,7 @@ session_start();
 						</ul>
 					</li>
 					<li><a href="./contact.php">Контакти</a></li>
+					<li><a href="admin/admin_panel.php">Адміністрування</a></li>
 				</ul>
 			</nav>
 		</div>

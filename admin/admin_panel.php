@@ -52,13 +52,13 @@
 	        <a class="nav-link" href="Posts/list_posts.php">Пости на модерацію</a>
 	      </li>
 	      <li class="nav-item text-center">
-	        <a class="nav-link" href="#">Модеровані пости</a>
+	        <a class="nav-link" href="Confirmed_posts/list_confirmed_posts.php">Модеровані пости</a>
 	      </li>
 	      <li class="nav-item text-center">
 	        <a class="nav-link" href="#">Відгуки</a>
 	      </li>
 	      <li class="nav-item text-center">
-	        <a class="nav-link" href="#">Користувачі</a>
+	        <a class="nav-link" href="Users/list_users.php">Користувачі</a>
 	      </li>
 	      <li class="nav-item text-center">
 	        <a class="nav-link" href="#">Ролі користувачів</a>

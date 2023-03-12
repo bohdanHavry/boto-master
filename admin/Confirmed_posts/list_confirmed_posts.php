@@ -1,37 +1,29 @@
 <?php
-session_start();
-
-		require_once "../../Include/Include.php";
-		$Users = mysqli_query($linc, "SELECT
-        Users.ID_user,
-        Users.Login,
-        Users.Password,
-        Users.Confirm_password,
-        Users.Nickname, 
-        Users.Name,
-        Users.Surname, 
-        Users.Phone,
-        Users.User_icon,
-        Users.Personal_info,
-        Users.Register_date,
-        Roles.role_name
-         FROM `Users` JOIN Roles ON Users.role_id = Roles.role_id");
-		$Users = mysqli_fetch_all($Users);
-		echo '
-		<script>
-		function confirmSpelll() {
-			if (confirm("Увага! При видаленні даних з довідника, в основній таблиці запис теж буде видалено!")) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		 
-		</script>
-		';
-	
-
-
+require_once "../../Include/include.php";
+$Posts = mysqli_query($linc, "SELECT ConfirmedPosts.con_post_id,
+ Posts.post_title, 
+ Posts.post_description, 
+ Posts.post_image, 
+ Posts.artist_name, 
+ Posts.created_at,
+ Users.Nickname,
+ Categories.category_name
+FROM `ConfirmedPosts` JOIN Users ON ConfirmedPosts.user_id = Users.ID_User
+JOIN Posts ON ConfirmedPosts.post_id = Posts.post_id
+JOIN Categories ON Posts.category_id = Categories.category_id WHERE ConfirmedPosts.is_approved = '1'");
+$Posts = mysqli_fetch_all($Posts);
+echo '
+<script>
+function confirmSpelll() {
+    if (confirm("Увага! При видаленні даних з довідника, в основній таблиці запис теж буде видалено!")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+ 
+</script>
+';
 ?>
 
 <!DOCTYPE html>
@@ -43,9 +35,9 @@ session_start();
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" ></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script>
-	<title>Список користувачів</title>
+	<title>Категорії творів</title>
 	<style>
-       .white-text{
+        .white-text{
             color: #FFFFFF;
         }
         .vertical-nav {
@@ -68,11 +60,10 @@ session_start();
           color: #fff;
           background-color: #6c757d;
         }
-        .container{
+		.container{
 			float: right;
 			z-index: -1;
 		}
-
 		.navbar{
 			width: 100%;
 			position: fixed;
@@ -108,59 +99,41 @@ session_start();
     </li>
     </div>
     </nav>
-		<h1 class="text-primary text-center">Таблиця користувачів</h1>
-		<div class="container">
-		<table class="table table-bordered table-stripped">
+		<div class="container text-center">
+            <h1>Пости, що пройшли модерацію</h1>
+		<table class="table table-bordered table-stripped" style="width:100%">
 			<thead>
 				<tr>
 					<th>
-						Ідентифікатор користувача
+						Код 
 					</th>
 					<th>
-						Логін
+						Назва публікації
 					</th>
 					<th>
-						Пароль
+						Опис публікації
+					</th>
+                    <th>
+						Зображення
+					</th>
+                    <th>
+						Ім'я автора
+					</th>
+                    <th>
+						Час створення
+					</th>
+                    <th>
+						Нікнейм модератора
 					</th>
 					<th>
-                        Підтверджений пароль
-					</th>
-                    <th>
-						Нікнейм
-					</th>
-                    <th>
-						Ім'я
-					</th>
-                    <th>
-						Прізвище
-					</th>
-                    <th>
-						Номер телефону
-					</th>
-                    <th>
-						Фото профілю
-					</th>
-                    <th>
-						Опис користувача
-					</th>
-                    <th>
-						Дата реєстрації
-					</th>
-                    <th>
-						Роль користувача
-					</th>
-					<th>
-						&#9998
-					</th>
-					<th>
-						&#10006
+						Категорія твору
 					</th>
 					<tr>
 
 			</thead>
 			<tbody>
 				<?php
-				foreach($Users as $item)
+				foreach($Posts as $item)
 				{
 				?>
 				<tr>
@@ -173,45 +146,27 @@ session_start();
 					<td>
 					<?= $item[2] ?>
                     </td>
-					<td>
-					<?= $item[3] ?>
+                    <td>
+					<img height="140px" width="200px" src="<?= $item[3] ?>">
                     </td>
 					<td>
 					<?= $item[4] ?>
                     </td>
-                    <td>
+					<td>
 					<?= $item[5] ?>
                     </td>
-					<td>
+                    <td>
 					<?= $item[6] ?>
                     </td>
 					<td>
 					<?= $item[7] ?>
                     </td>
-					<td>
-					<?= $item[8] ?>
-                    </td>
-					<td>
-					<?= $item[9] ?>
-                    </td>
-					<td>
-					<?= $item[10] ?>
-                    </td>
-					<td>
-					<?= $item[11] ?>
-                    </td>
-					<td>
-						<a href="updateUser.php?User_Id=<?=$item[0]?>">Оновити</a>
-				</td
-				><td>
-						<a href="deleteUser.php?User_Id=<?=md5($item[0])?>" onclick="return confirmSpelll();">Видалити</a>
-				</td>
 				<?php
 				}
 				?>
 			</tbody>
 			 </table>
-			 <hr></hr>
+			</div>
 </div>
 	</body>
 </html>	

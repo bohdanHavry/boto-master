@@ -1,6 +1,15 @@
 <?php
 require_once "../../Include/include.php";
-$Posts = mysqli_query($linc, "SELECT * FROM `Posts`");
+$Posts = mysqli_query($linc, "SELECT Posts.post_id,
+ Posts.post_title, 
+ Posts.post_description, 
+ Posts.post_image, 
+ Posts.artist_name, 
+ Posts.created_at,
+ Users.Nickname,
+ Categories.category_name
+FROM `Posts` JOIN Users ON Posts.user_id = Users.ID_User
+ JOIN Categories ON Posts.category_id = Categories.category_id");
 $Posts = mysqli_fetch_all($Posts);
 echo '
 <script>
@@ -50,14 +59,43 @@ function confirmSpelll() {
           color: #fff;
           background-color: #6c757d;
         }
+		.container{
+			float: right;
+			z-index: -1;
+		}
+		.navbar{
+			width: 100%;
+			position: fixed;
+			left: 0;
+		}
     </style>
 	</head>
 	<body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-success">
-	  <a class="navbar-brand white-text" href="../main.php">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp daVinci</a>
+	<nav class="navbar navbar-expand-lg navbar-light bg-success pl-6">
+	  <a class="navbar-brand white-text bg-success" href="../admin_panel.php">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp daVinci</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
+	  <div class="vertical-nav">
+	    <ul class="navbar-nav mr-auto flex-column">
+	      <li class="nav-item text-center">
+          <a class="nav-link" href="../Categories/list_categories.php">Категорії творів</a>
+	      </li>
+	      <li class="nav-item text-center">
+	        <a class="nav-link" href="../Posts/list_posts.php">Пости на модерацію</a>
+	      </li>
+	      <li class="nav-item text-center">
+	        <a class="nav-link" href="../Confirmed_posts/list_confirmed_posts.php">Модеровані пости</a>
+	      </li>
+	      <li class="nav-item text-center">
+	        <a class="nav-link" href="#">Відгуки</a>
+	      </li>
+	      <li class="nav-item text-center">
+	        <a class="nav-link" href="../Users/list_users.php">Користувачі</a>
+	      </li>
+	      <li class="nav-item text-center">
+	        <a class="nav-link" href="#">Ролі користувачів</a>
+    </div>
     </nav>
 		<div class="container text-center">
             <h1>Пости, що чекають на модерацію</h1>
@@ -83,10 +121,10 @@ function confirmSpelll() {
 						Час створення
 					</th>
                     <th>
-						Ідентифікатор користувача
+						Нікнейм користувача
 					</th>
                     <th>
-						Ідентифікатор категорії
+						Назва категорії
 					</th>
 					<th>
 						&#9998
@@ -129,10 +167,10 @@ function confirmSpelll() {
                     </td>
 
 					<td>
-						<a href="../updateClient.php?CKod=<?=$item[0]?>">Оновити</a>
+						<a href="../updateClient.php?CKod=<?=$item[0]?>">Опублікувати</a>
 				</td
 				><td>
-						<a href="deleteClient.php?CKod=<?=$item[0]?>" onclick="return confirmSpelll();">Видалити</a>
+						<a href="deleteClient.php?CKod=<?=$item[0]?>" onclick="return confirmSpelll();">Заблокувати</a>
 				</td>
 				<?php
 				}

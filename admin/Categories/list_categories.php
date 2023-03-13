@@ -1,19 +1,28 @@
 <?php
-require_once "../../Include/include.php";
-$Categories = mysqli_query($linc, "SELECT * FROM `Categories`");
-$Categories = mysqli_fetch_all($Categories);
-echo '
-<script>
-function confirmSpelll() {
-    if (confirm("Увага! При видаленні даних з довідника, в основній таблиці запис теж буде видалено!")) {
-        return true;
-    } else {
-        return false;
-    }
-}
- 
-</script>
-';
+session_start();
+if ($_SESSION['auth_user']!="admin")
+{   echo 'Доступ заборонений';
+	unset($_SESSION['auth_user']);
+	header("Location: ../../login.php");
+ }    
+ else{
+	require_once "../../Include/include.php";
+	$Categories = mysqli_query($linc, "SELECT * FROM `Categories`");
+	$Categories = mysqli_fetch_all($Categories);
+	echo '
+	<script>
+	function confirmSpelll() {
+		if (confirm("Увага! При видаленні даних з довідника, в основній таблиці запис теж буде видалено!")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	 
+	</script>
+	';
+ }
+
 ?>
 
 <!DOCTYPE html>
@@ -51,44 +60,49 @@ function confirmSpelll() {
           background-color: #6c757d;
         }
 
+		.container{
+			float: center;
+			z-index: -1;
+		}
+
 		.navbar{
 			width: 100%;
-			position: fixed;
 			left: 0;
 		}
     </style>
 	</head>
-	<body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-success pl-6">
-	  <a class="navbar-brand white-text bg-success" href="../admin_panel.php">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp daVinci</a>
+	<body class="bg-dark white-text">
+	<nav class="navbar navbar-expand-lg navbar-light bg-danger pl-6">
+	  <a class="navbar-brand white-text bg-danger" href="../admin_panel.php">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp daVinci</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	  <div class="vertical-nav">
-	    <ul class="navbar-nav mr-auto flex-column">
-	      <li class="nav-item text-center">
-          <a class="nav-link" href="../Categories/list_categories.php">Категорії творів</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="../Posts/list_posts.php">Пости на модерацію</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="../Confirmed_posts/list_confirmed_posts.php">Модеровані пости</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="#">Відгуки</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="../Users/list_users.php">Користувачі</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="#">Ролі користувачів</a>
-    </li>
-    </div>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+	  <a class="nav-link white-text" href="../Categories/list_categories.php">&nbsp &nbspКатегорії творів</a>
+      </li>
+      <li class="nav-item">
+	  <a class="nav-link white-text" href="../Posts/list_posts.php">&nbsp &nbspПости на модерацію</a>
+      </li>
+      <li class="nav-item">
+	  <a class="nav-link white-text" href="../Confirmed_posts/list_confirmed_posts.php">&nbsp &nbspМодеровані пости</a>
+      </li>
+      <li class="nav-item">
+	  <a class="nav-link white-text" href="#">&nbsp &nbspВідгуки</a>
+      </li>
+	  <li class="nav-item">
+	  <a class="nav-link white-text" href="../Users/list_users.php">&nbsp &nbspКористувачі</a>
+      </li>
+	  <li class="nav-item">
+	  <a class="nav-link white-text" href="#">&nbsp &nbspРолі користувачів</a>
+      </li>
+    </ul>
+  </div> 
     </nav>
 		<div class="container text-center">
             <h1>Перелік категорій творів</h1>
-		<table class="table table-bordered table-stripped" style="width:100%">
+		<table class="table table-bordered table-stripped white-text" style="width:100%">
 			<thead>
 				<tr>
 					<th>
@@ -125,10 +139,10 @@ function confirmSpelll() {
 					<?= $item[2] ?>
                     </td>
 					<td>
-						<a href="../updateClient.php?CKod=<?=$item[0]?>">Оновити</a>
+						<a class = "white-text" href="../updateClient.php?CKod=<?=$item[0]?>">Оновити</a>
 				</td
 				><td>
-						<a href="deleteClient.php?CKod=<?=$item[0]?>" onclick="return confirmSpelll();">Видалити</a>
+						<a class = "white-text" href="deleteClient.php?CKod=<?=$item[0]?>" onclick="return confirmSpelll();">Видалити</a>
 				</td>
 				<?php
 				}
@@ -136,7 +150,7 @@ function confirmSpelll() {
 			</tbody>
 			 </table>
 			 <hr></hr>
-			 <h2 class="text-center text-success">Додати нову категорію</h2>
+			 <h2 class="text-center">Додати нову категорію</h2>
 			 <div >
 				<form action="createClient.php" method="post">
 				<p>Назва категорії</p>

@@ -88,10 +88,17 @@
 
                     <div class="col-md-2" style="text-align: center;">
                     <?php 
-                            if($ID_User > 0)
+                            if($ID_User > 0 && $_SESSION['auth_user']=="admin")
                             {
-                              echo'  <a class="profile-edit-btn" href="changeinfo.php?ID_User='.$ID_User.'">Змінити інформацію</a>';
-                            } 
+                              echo'<a class="profile-edit-btn" href="changeinfo.php?ID_User='.$ID_User.'">Змінити інформацію</a>';
+                              echo'</br>';
+                              echo'</br>';
+                              echo'<a class="profile-edit-btn" href="admin/admin_panel.php">Адміністрування</a>';
+                            }
+                            if($ID_User > 0 && $_SESSION['auth_user']!="admin")
+                            {
+                              echo'<a class="profile-edit-btn" href="changeinfo.php?ID_User='.$ID_User.'">Змінити інформацію</a>';
+                            }
                         ?>	
                     </div>
                 </div>

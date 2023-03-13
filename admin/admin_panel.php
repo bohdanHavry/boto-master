@@ -35,35 +35,45 @@
 			background-color: #6c757d;
 		}
 
-	</style>
+		.container{
+			float: center;
+			z-index: -1;
+		}
+
+		.navbar{
+			width: 100%;
+			left: 0;
+		}
+    </style>
 	</head>
-	<body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-success pl-6">
-	  <a class="navbar-brand white-text" href="../main.php">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp daVinci</a>
+	<body class="bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-light bg-danger pl-6">
+	  <a class="navbar-brand white-text bg-danger" href="../admin_panel.php">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp daVinci</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	  <div class="vertical-nav">
-	    <ul class="navbar-nav mr-auto flex-column">
-	      <li class="nav-item text-center">
-          <a class="nav-link" href="Categories/list_categories.php">Категорії творів</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="Posts/list_posts.php">Пости на модерацію</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="Confirmed_posts/list_confirmed_posts.php">Модеровані пости</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="#">Відгуки</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="Users/list_users.php">Користувачі</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="#">Ролі користувачів</a>
-    </li>
-    </div>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+	  <a class="nav-link white-text" href="Categories/list_categories.php">&nbsp &nbspКатегорії творів</a>
+      </li>
+      <li class="nav-item">
+	  <a class="nav-link white-text" href="Posts/list_posts.php">&nbsp &nbspПости на модерацію</a>
+      </li>
+      <li class="nav-item">
+	  <a class="nav-link white-text" href="Confirmed_posts/list_confirmed_posts.php">&nbsp &nbspМодеровані пости</a>
+      </li>
+      <li class="nav-item">
+	  <a class="nav-link white-text" href="#">&nbsp &nbspВідгуки</a>
+      </li>
+	  <li class="nav-item">
+	  <a class="nav-link white-text" href="Users/list_users.php">&nbsp &nbspКористувачі</a>
+      </li>
+	  <li class="nav-item">
+	  <a class="nav-link white-text" href="#">&nbsp &nbspРолі користувачів</a>
+      </li>
+    </ul>
+  </div> 
     </nav>
     </body>
     </html>

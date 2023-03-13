@@ -1,6 +1,11 @@
 <?php
 session_start();
-
+if ($_SESSION['auth_user']!="admin")
+{   echo 'Доступ заборонений';
+	unset($_SESSION['auth_user']);
+	header("Location: ../../login.php");
+ }    
+ else{
 		require_once "../../Include/Include.php";
 		$Users = mysqli_query($linc, "SELECT
         Users.ID_user,
@@ -29,7 +34,7 @@ session_start();
 		 
 		</script>
 		';
-	
+ }
 
 
 ?>
@@ -69,48 +74,48 @@ session_start();
           background-color: #6c757d;
         }
         .container{
-			float: right;
+			float: center;
 			z-index: -1;
 		}
 
 		.navbar{
 			width: 100%;
-			position: fixed;
 			left: 0;
 		}
     </style>
 	</head>
-	<body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-success pl-6">
-	  <a class="navbar-brand white-text bg-success" href="../admin_panel.php">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp daVinci</a>
+	<body class="bg-dark white-text">
+	<nav class="navbar navbar-expand-lg navbar-light bg-danger pl-6">
+	  <a class="navbar-brand white-text bg-danger" href="../admin_panel.php">&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp daVinci</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
-	  <div class="vertical-nav">
-	    <ul class="navbar-nav mr-auto flex-column">
-	      <li class="nav-item text-center">
-          <a class="nav-link" href="../Categories/list_categories.php">Категорії творів</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="../Posts/list_posts.php">Пости на модерацію</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="../Confirmed_posts/list_confirmed_posts.php">Модеровані пости</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="#">Відгуки</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="../Users/list_users.php">Користувачі</a>
-	      </li>
-	      <li class="nav-item text-center">
-	        <a class="nav-link" href="#">Ролі користувачів</a>
-    </li>
-    </div>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+	  <a class="nav-link white-text" href="../Categories/list_categories.php">&nbsp &nbspКатегорії творів</a>
+      </li>
+      <li class="nav-item">
+	  <a class="nav-link white-text" href="../Posts/list_posts.php">&nbsp &nbspПости на модерацію</a>
+      </li>
+      <li class="nav-item">
+	  <a class="nav-link white-text" href="../Confirmed_posts/list_confirmed_posts.php">&nbsp &nbspМодеровані пости</a>
+      </li>
+      <li class="nav-item">
+	  <a class="nav-link white-text" href="#">&nbsp &nbspВідгуки</a>
+      </li>
+	  <li class="nav-item">
+	  <a class="nav-link white-text" href="../Users/list_users.php">&nbsp &nbspКористувачі</a>
+      </li>
+	  <li class="nav-item">
+	  <a class="nav-link white-text" href="#">&nbsp &nbspРолі користувачів</a>
+      </li>
+    </ul>
+  </div> 
     </nav>
-		<h1 class="text-primary text-center">Таблиця користувачів</h1>
+		<h1 class=" text-center white-text">Таблиця користувачів</h1>
 		<div class="container">
-		<table class="table table-bordered table-stripped">
+		<table class="table table-bordered table-stripped white-text">
 			<thead>
 				<tr>
 					<th>
@@ -201,10 +206,10 @@ session_start();
 					<?= $item[11] ?>
                     </td>
 					<td>
-						<a href="updateUser.php?User_Id=<?=$item[0]?>">Оновити</a>
+						<a class="white-text" href="updateUser.php?User_Id=<?=$item[0]?>">Оновити</a>
 				</td
 				><td>
-						<a href="deleteUser.php?User_Id=<?=md5($item[0])?>" onclick="return confirmSpelll();">Видалити</a>
+						<a class="white-text" href="deleteUser.php?User_Id=<?=md5($item[0])?>" onclick="return confirmSpelll();">Видалити</a>
 				</td>
 				<?php
 				}

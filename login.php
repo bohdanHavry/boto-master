@@ -23,19 +23,18 @@
 			{$_SESSION['auth_user']	= 'admin';
                 $_SESSION['ID_User'] = $ID_User;
 	         header("Location: index.php?ID_User=$ID_User");
-             //header("Location: index.php?ID_User=$ID_User");
 			}
 			if ($row["role_id"]==2) 
 			{$_SESSION['auth_user']	= 'user';
                 $_SESSION['ID_User'] = $ID_User;
 	         header("Location: index.php?ID_User=$ID_User");
 			}
-            else{ echo'
-                <script>
-					alert("Такого користувача не існує.");
-				</script>';
-            }
 		 }
+         else{ echo'
+            <script>
+                alert("Такого користувача не існує.");
+            </script>';
+        }
 	}
 ?>
 <!DOCTYPE html>

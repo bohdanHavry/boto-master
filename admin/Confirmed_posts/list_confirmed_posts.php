@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['auth_user']!="admin")
 {   echo 'Доступ заборонений';
 	unset($_SESSION['auth_user']);
-	header("Location: ../../login.php");
+	header("Location: ../../index.php");
  }    
  else{
 require_once "../../Include/include.php";
@@ -17,7 +17,7 @@ $Posts = mysqli_query($linc, "SELECT ConfirmedPosts.con_post_id,
  Categories.category_name
 FROM `ConfirmedPosts` JOIN Users ON ConfirmedPosts.user_id = Users.ID_User
 JOIN Posts ON ConfirmedPosts.post_id = Posts.post_id
-JOIN Categories ON Posts.category_id = Categories.category_id WHERE ConfirmedPosts.is_approved = '1'");
+JOIN Categories ON Posts.category_id = Categories.category_id WHERE Posts.post_status = 'Опубліковано'");
 $Posts = mysqli_fetch_all($Posts);
 echo '
 <script>
@@ -94,6 +94,9 @@ function confirmSpelll() {
       </li>
       <li class="nav-item">
 	  <a class="nav-link white-text" href="../Confirmed_posts/list_confirmed_posts.php">&nbsp &nbspМодеровані пости</a>
+      </li>
+	  <li class="nav-item">
+	  <a class="nav-link white-text" href="../Confirmed_posts/banned_posts.php">&nbsp &nbspВідхилені пости</a>
       </li>
       <li class="nav-item">
 	  <a class="nav-link white-text" href="#">&nbsp &nbspВідгуки</a>

@@ -6,23 +6,32 @@ if ($_SESSION['auth_user']!="admin")
 	header("Location: ../../index.php");
  }    
  else{
-	require_once "../../Include/include.php";
-	$Categories = mysqli_query($linc, "SELECT * FROM `Categories`");
-	$Categories = mysqli_fetch_all($Categories);
-	echo '
-	<script>
-	function confirmSpelll() {
-		if (confirm("Увага! При видаленні даних з довідника, в основній таблиці запис теж буде видалено!")) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	 
-	</script>
-	';
+require_once "../../Include/include.php";
+$Posts = mysqli_query($linc, "SELECT ConfirmedPosts.con_post_id,
+ Posts.post_title, 
+ Posts.post_description, 
+ Posts.post_image, 
+ Posts.artist_name, 
+ Posts.created_at,
+ Users.Nickname,
+ Categories.category_name
+FROM `ConfirmedPosts` JOIN Users ON ConfirmedPosts.user_id = Users.ID_User
+JOIN Posts ON ConfirmedPosts.post_id = Posts.post_id
+JOIN Categories ON Posts.category_id = Categories.category_id WHERE Posts.post_status = 'Відхилено'");
+$Posts = mysqli_fetch_all($Posts);
+echo '
+<script>
+function confirmSpelll() {
+    if (confirm("Увага! При видаленні даних з довідника, в основній таблиці запис теж буде видалено!")) {
+        return true;
+    } else {
+        return false;
+    }
+}
+ 
+</script>
+';
  }
-
 ?>
 
 <!DOCTYPE html>
@@ -59,12 +68,10 @@ if ($_SESSION['auth_user']!="admin")
           color: #fff;
           background-color: #6c757d;
         }
-
 		.container{
 			float: center;
 			z-index: -1;
 		}
-
 		.navbar{
 			width: 100%;
 			left: 0;
@@ -101,7 +108,7 @@ if ($_SESSION['auth_user']!="admin")
   </div> 
     </nav>
 		<div class="container text-center">
-            <h1>Перелік категорій творів</h1>
+            <h1>Відхилені пости</h1>
 		<table class="table table-bordered table-stripped white-text" style="width:100%">
 			<thead>
 				<tr>
@@ -109,23 +116,32 @@ if ($_SESSION['auth_user']!="admin")
 						Код 
 					</th>
 					<th>
-						Назва категорії
+						Назва публікації
 					</th>
 					<th>
-						Опис категорії
+						Опис публікації
+					</th>
+                    <th>
+						Зображення
+					</th>
+                    <th>
+						Ім'я автора
+					</th>
+                    <th>
+						Час створення
+					</th>
+                    <th>
+						Нікнейм модератора
 					</th>
 					<th>
-						&#9998
-					</th>
-					<th>
-						&#10006
+						Категорія твору
 					</th>
 					<tr>
 
 			</thead>
 			<tbody>
 				<?php
-				foreach($Categories as $item)
+				foreach($Posts as $item)
 				{
 				?>
 				<tr>
@@ -138,27 +154,26 @@ if ($_SESSION['auth_user']!="admin")
 					<td>
 					<?= $item[2] ?>
                     </td>
+                    <td>
+					<img height="140px" width="200px" src="<?= $item[3] ?>">
+                    </td>
 					<td>
-						<a class = "white-text" href="../updateClient.php?CKod=<?=$item[0]?>">Оновити</a>
-				</td
-				><td>
-						<a class = "white-text" href="deleteClient.php?CKod=<?=$item[0]?>" onclick="return confirmSpelll();">Видалити</a>
-				</td>
+					<?= $item[4] ?>
+                    </td>
+					<td>
+					<?= $item[5] ?>
+                    </td>
+                    <td>
+					<?= $item[6] ?>
+                    </td>
+					<td>
+					<?= $item[7] ?>
+                    </td>
 				<?php
 				}
 				?>
 			</tbody>
 			 </table>
-			 <hr></hr>
-			 <h2 class="text-center">Додати нову категорію</h2>
-			 <div >
-				<form action="createClient.php" method="post">
-				<p>Назва категорії</p>
-				<input class="form-control p-1" style="width:100%" type="text" name="category_name">
-				<p>Опис категорії</p>
-				<input class="form-control p-1" style="width:100%" type="text" name="category_description">
-				<button name="submit_add_category" type="submit" class="btn btn-success mt-3 text-center">Додати нову категорію</button>
-				</form>
 			</div>
 </div>
 	</body>

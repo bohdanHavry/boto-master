@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['auth_user']!="admin")
 {   echo 'Доступ заборонений';
 	unset($_SESSION['auth_user']);
-	header("Location: ../../login.php");
+	header("Location: ../../index.php");
  }    
  else{
 		require_once "../../Include/Include.php";
@@ -20,7 +20,7 @@ if ($_SESSION['auth_user']!="admin")
         Users.Personal_info,
         Users.Register_date,
         Roles.role_name
-         FROM `Users` JOIN Roles ON Users.role_id = Roles.role_id");
+         FROM `Users` INNER JOIN Roles ON Users.role_id = Roles.role_id");
 		$Users = mysqli_fetch_all($Users);
 		echo '
 		<script>

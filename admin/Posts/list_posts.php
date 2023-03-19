@@ -3,7 +3,7 @@ session_start();
 if ($_SESSION['auth_user']!="admin")
 {   echo 'Доступ заборонений';
 	unset($_SESSION['auth_user']);
-	header("Location: ../../login.php");
+	header("Location: ../../index.php");
  }    
  else{
 require_once "../../Include/include.php";
@@ -14,9 +14,10 @@ $Posts = mysqli_query($linc, "SELECT Posts.post_id,
  Posts.artist_name, 
  Posts.created_at,
  Users.Nickname,
- Categories.category_name
+ Categories.category_name,
+ Posts.post_status
 FROM `Posts` JOIN Users ON Posts.user_id = Users.ID_User
- JOIN Categories ON Posts.category_id = Categories.category_id");
+ JOIN Categories ON Posts.category_id = Categories.category_id WHERE Posts.post_status = 'Очікує'");
 $Posts = mysqli_fetch_all($Posts);
 echo '
 <script>
@@ -94,6 +95,9 @@ function confirmSpelll() {
       <li class="nav-item">
 	  <a class="nav-link white-text" href="../Confirmed_posts/list_confirmed_posts.php">&nbsp &nbspМодеровані пости</a>
       </li>
+	  <li class="nav-item">
+	  <a class="nav-link white-text" href="../Confirmed_posts/banned_posts.php">&nbsp &nbspВідхилені пости</a>
+      </li>
       <li class="nav-item">
 	  <a class="nav-link white-text" href="#">&nbsp &nbspВідгуки</a>
       </li>
@@ -136,6 +140,9 @@ function confirmSpelll() {
 						Назва категорії
 					</th>
 					<th>
+						Статус публікації
+					</th>
+					<th>
 						&#9998
 					</th>
 					<th>
@@ -174,12 +181,14 @@ function confirmSpelll() {
 					<td>
 					<?= $item[7] ?>
                     </td>
-
 					<td>
-						<a class="white-text" href="../updateClient.php?CKod=<?=$item[0]?>">Опублікувати</a>
+					<?= $item[8] ?>
+                    </td>
+					<td>
+						<a class="white-text" href="confirm_post.php?post_id=<?=$item[0]?>">Опублікувати</a>
 				</td
 				><td>
-						<a class="white-text" href="deleteClient.php?CKod=<?=$item[0]?>" onclick="return confirmSpelll();">Заблокувати</a>
+						<a class="white-text" href="ban_post.php?post_id=<?=$item[0]?>">Відхилити</a>
 				</td>
 				<?php
 				}

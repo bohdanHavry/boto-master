@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="css/slicknav.min.css"/>
 
 	<!-- Main Stylesheets -->
-	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="css/styyle.css"/>
 
 
 	<!--[if lt IE 9]>

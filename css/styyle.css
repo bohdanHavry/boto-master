@@ -1194,6 +1194,7 @@ only screen and (min-width: 576px) and (max-width: 767px) {
 	resize: none;
 	margin-bottom: 50px;
 }
+
 .theme-name{
 	display: flex;
 	justify-content: center;

@@ -2,6 +2,9 @@
 	session_start();
 	include "include/include.php"; //Підключення до бази даних
     $ID_User = $_GET['ID_User'];
+    if (isset($_GET['message']) && $_GET['message'] == 'success') {
+        echo "Пост був успішно відправлений на модерацію, очікуйте деталей про його статус!";
+      }
     //echo "'.$ID_User.'";
 
    /* // перевіряємо, чи залогінений користувач
@@ -93,11 +96,17 @@
                               echo'<a class="profile-edit-btn" href="changeinfo.php?ID_User='.$ID_User.'">Змінити інформацію</a>';
                               echo'</br>';
                               echo'</br>';
+                              echo'<a class="profile-edit-btn" href="createPost.php?ID_User='.$ID_User.'">Створити пост</a>';
+                              echo'</br>';
+                              echo'</br>';
                               echo'<a class="profile-edit-btn" href="admin/admin_panel.php">Адміністрування</a>';
                             }
                             if($ID_User > 0 && $_SESSION['auth_user']!="admin")
                             {
                               echo'<a class="profile-edit-btn" href="changeinfo.php?ID_User='.$ID_User.'">Змінити інформацію</a>';
+                              echo'</br>';
+                              echo'</br>';
+                              echo'<a class="profile-edit-btn" href="createPost.php?ID_User='.$ID_User.'">Створити пост</a>';
                             }
                         ?>	
                     </div>

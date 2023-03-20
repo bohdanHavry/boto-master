@@ -74,16 +74,12 @@
             post_description='".$_POST["post_description"]."',
             post_image='',
             artist_name='".$_POST["artist_name"]."',
-            created_at='',
             user_id='1',
             category_id='".$_POST["category"]."',
             post_status='Очікує'
 					");
 
-                    echo '<pre>';
-                    echo print_r($_POST);
-                    echo '</pre>';
-            //header("Location: profile.php?ID_User=$ID_User&message=success");
+            header("Location: profile.php?ID_User=$ID_User&message=success");
 		
 	};		
     $post_id = mysqli_insert_id($linc);

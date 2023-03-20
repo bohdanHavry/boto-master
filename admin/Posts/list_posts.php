@@ -167,7 +167,7 @@ function confirmSpelll() {
 					<?= $item[2] ?>
                     </td>
                     <td>
-					<img height="140px" width="200px" src="<?= $item[3] ?>">
+					<img height="140px" width="200px" src="../../uploads_images/<?= $item[3] ?>">
                     </td>
 					<td>
 					<?= $item[4] ?>
